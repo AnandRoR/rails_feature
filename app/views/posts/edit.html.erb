@@ -1,0 +1,8 @@
+<% content_for :title do %>
+Hi
+<% end %>
+<h1>Update Post</h1>
+<%= form_for @post do |f| %>
+ <%= render :partial => 'form', locals: {f: f} %>
+<%= f.submit "Update" %>
+<% end %>

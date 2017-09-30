@@ -22,3 +22,7 @@
 
 #ignore config files
 /config/database.yml
+
+#ignore public files
+/public/uploads/
+
