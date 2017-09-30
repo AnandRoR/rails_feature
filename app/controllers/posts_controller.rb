@@ -5,7 +5,13 @@ class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
 
   def index
-  	@posts = Post.all
+    if params[:counter].present?
+      @posts = Post.offset(params[:counter].to_i * 10).limit(10)
+      render partial: 'index' and return
+    else
+      @posts = Post.limit(10)
+      @counter = Post.count/10
+    end
   end
 
   def show
@@ -41,7 +47,7 @@ class PostsController < ApplicationController
     redirect_to posts_path
   end
 
-  
+
   private
 
   #Whitlist parameters before pass them to model

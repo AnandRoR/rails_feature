@@ -1,26 +1,28 @@
-<div class="container">
+<div class="container text-white">
   <h2>All Posts</h2>
-  <div class="table-responsive">          
-  <table class="table">
+  <div class="table-responsive ">          
+  <table class="table" id="data">
     <thead>
       <tr>
-        <th>ID</th>
+        <!-- <th>ID</th> -->
         <th>Title</th>
-        <th>Last Updated</th>
-        <th>Action</th>
+        <th>Description</th>
+        <th>Image</th>
+        <th>Published On</th>
+        <!-- <th>Action</th> -->
       </tr>
     </thead>
     <tbody>
-    <% @posts.limit(1).each do |post| %>
+    <% @posts.each do |post| %>
       <tr>
-        <td><%= post.id %></td>
+        <!-- <td><%#= post.id %></td> -->
         <td><%= post.title %></td>
         <td><%= post.description %></td>
-        <td><%= image_tag(post.image.url, width: 200, height: 200) if post.image.url %></td>
-        <td><%= post.updated_at %></td>
-        <td colspan="2"><%= link_to "Show", post_path(post)%></td>
-        <td><%= link_to "Edit", edit_post_path(post)%></td>
-        <td><%= link_to "Delete", post_path(post), method: :delete %></td>
+        <td><%= image_tag(post.image, width: 600, height: 400) if post.image %></td>
+        <td><%= post.updated_at.strftime("%B %d, %Y")%></td>
+        <!-- <td colspan="2"><%#= link_to "Show", post_path(post)%></td> -->
+       <!--  <td><%#= link_to "Edit", edit_post_path(post)%></td>
+        <td><%#= link_to "Delete", post_path(post), method: :delete %></td> -->
       </tr>
       <% end %>
     </tbody>
@@ -28,11 +30,31 @@
   </div>
   <%= link_to "New Post", new_post_path %>
 </div>
+<script type="text/javascript">
+var counter=0;
+var total = '<%= @counter %>';
+ function recursively_ajax()
+{
+$.ajax({
+        type:"get",
+        // async:false, // set async false to wait for previous response
+        url: "/",
+        data:{counter:counter},
+        success: function(data)
+        {   $("#data tbody").append(data);
+            counter++;
+            if(counter < total){
+                recursively_ajax();
+            }
+        }
+    });
+ }      
+ recursively_ajax();  
+</script>
 
 
 
-
-<div class="body_wrapper">
+<!-- <div class="body_wrapper">
   <div class="center">
     <div class="header_area">
       <div class="logo floatleft"><a href="#"><%= image_tag('logo.png') %></a></div>
@@ -73,7 +95,7 @@
       <div class="slider">
         <ul class="bxslider">
         <% @posts.last(10).each do |post|%>
-        <li> <%= image_tag(post.image.url) if post.image.url %> </li>
+        <li> <%= image_tag(post.image) if post.image %> </li>
         <%end%>
         </ul>
       </div>
@@ -290,4 +312,4 @@ $('.bxslider').bxSlider({
     mode: 'fade',
     captions: true
 });
-</script>
+</script> -->

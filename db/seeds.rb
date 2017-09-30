@@ -27,7 +27,7 @@ if response.present?
   p "*************** Generating Categories Sources ***************"
 
   Source.destroy_all #delete any existing record
-  Source.create(categories)
+  Source.create(category_sources)
 
   p "*************** #{Source.count} category sources generated *******************"
 end
@@ -35,6 +35,8 @@ end
 
 post_sources = Source.all
 posts = []
+Post.destroy_all
+p "****** Generating Post ***********"
 post_sources.each do |source|
 
   response = HTTParty.get("https://newsapi.org/v1/articles?source=#{source.name}&sortBy=top&apiKey=#{api_key}")
@@ -43,3 +45,4 @@ post_sources.each do |source|
     Post.create(posts)
   end
 end
+p "*************** #{Post.count} Post Added in Database ***********"

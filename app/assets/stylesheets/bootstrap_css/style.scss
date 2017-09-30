@@ -10,7 +10,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 */
 
 *{margin:0; padding:0}
-body{font-family:Arial; font-size:12px; line-height:13px; background:url("images/site_bg.png") top center no-repeat fixed #000}
+body{font-family:Arial; font-size:12px; line-height:13px; background: image-url("site_bg.png") top center no-repeat fixed #000}
 a{color:#000; text-decoration:none}
 a:hover, a:active, a:focus{text-decoration:none; color:#000}
 input[type=text], input[type=password], textarea{border:1px solid #ddd; padding:5px}
@@ -32,7 +32,7 @@ div{overflow:hidden}
 #selectnav2{display:none}
 #nav{display:block}
 #f_menu{display:block}
-.body_wrapper{background:url("images/body_bg.png") repeat; margin-top:30px; margin-bottom:30px}
+.body_wrapper{background:image-url("body_bg.png") repeat; margin-top:30px; margin-bottom:30px}
 .header_area{}
 .logo{margin-top:20px}
 .top_menu{margin-left:60px; margin-top:60px; width:330px}
@@ -129,3 +129,5 @@ div{overflow:hidden}
 .footer_menu ul li a{display:inline-block; padding:0 22px}
 .footer_menu ul li a:hover{}
 .copyright_text{line-height:17px; text-align:center}
+
+.text-white{color: white;font-size: 18px;}
