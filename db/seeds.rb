@@ -38,7 +38,6 @@ posts = []
 Post.destroy_all
 p "****** Generating Post ***********"
 post_sources.each do |source|
-
   response = HTTParty.get("https://newsapi.org/v1/articles?source=#{source.name}&sortBy=top&apiKey=#{api_key}")
   if response["articles"].present?
     posts = response["articles"].inject([]){ |arry, _hash| arry << { title: _hash["title"], description: _hash["description"], category_id: source.category_id, remote_image_url: _hash["urlToImage"] } }
