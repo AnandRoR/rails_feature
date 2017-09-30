@@ -31,6 +31,7 @@
   <%= link_to "New Post", new_post_path %>
 </div>
 <script type="text/javascript">
+$( document ).on('ready',function() {
 var counter=0;
 var total = '<%= @counter %>';
  function recursively_ajax()
@@ -49,7 +50,8 @@ $.ajax({
         }
     });
  }      
- recursively_ajax();  
+ recursively_ajax();
+ });  
 </script>
 
 
